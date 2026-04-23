@@ -1,6 +1,6 @@
 # MIYARISAN 妙利散® — Design System
 
-> 版本 1.1 | 品牌：妙利散® / R-CHEVER 裕心 | 領域：醫藥・保健
+> 版本 1.2 | 品牌：妙利散® / R-CHEVER 裕心 | 領域：醫藥・保健
 > 風格定位：日本藥廠美學 × 科學公信力 × 溫暖親近
 
 ---
@@ -105,33 +105,136 @@
 
 ## 4. 字型系統
 
-### 主要字型
-| 角色 | 字型 | 備用 |
+### 字型家族
+
+| 字型 | 定位 | 特性 |
 |------|------|------|
-| 中文內文・標題 | FZLanTingHei（方正蘭亭黑） | PingFang TC, Noto Sans TC |
-| 英文 UI・數字 | Inter | system-ui, sans-serif |
+| **FZLanTingHei（方正蘭亭黑）** | 主字型 — UI、內文、標題 | 幾何理性、乾淨俐落、日系無襯線 |
+| **JF Jinxuan（jf 金萱）** | 展示字型 — Hero、Display | 人文溫暖、獨特個性、適合大字輸出 |
+
+### @font-face 宣告
 
 ```css
-font-family: 'FZLanTingHei', 'PingFang TC', 'Noto Sans TC', sans-serif;
-font-family: 'Inter', system-ui, sans-serif; /* 英文數字 */
+/* ── 方正蘭亭黑 FZLanTingHei ── */
+@font-face {
+  font-family: 'FZLanTingHei';
+  src: url('fonts/fzlt-w200.ttf') format('truetype');
+  font-weight: 200; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'FZLanTingHei';
+  src: url('fonts/fzlt-w300.ttf') format('truetype');
+  font-weight: 300; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'FZLanTingHei';
+  src: url('fonts/fzlt-w350.ttf') format('truetype');
+  font-weight: 350; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'FZLanTingHei';
+  src: url('fonts/fzlt-w400.ttf') format('truetype');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'FZLanTingHei';
+  src: url('fonts/fzlt-w700.ttf') format('truetype');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'FZLanTingHei';
+  src: url('fonts/fzlt-w900.ttf') format('truetype');
+  font-weight: 900; font-style: normal; font-display: swap;
+}
+
+/* ── jf 金萱 JF Jinxuan ── */
+@font-face {
+  font-family: 'JFJinxuan';
+  src: url('fonts/jf-jinxuan-ultralight.otf') format('opentype');
+  font-weight: 200; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'JFJinxuan';
+  src: url('fonts/JF-JINXUAN-BOOK.OTF') format('opentype');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'JFJinxuan';
+  src: url('fonts/JF-JINXUAN-MEDIUM.OTF') format('opentype');
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'JFJinxuan';
+  src: url('fonts/JF-JINXUAN-BOLD.OTF') format('opentype');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'JFJinxuan';
+  src: url('fonts/jf-jinxuan-heavy.otf') format('opentype');
+  font-weight: 900; font-style: normal; font-display: swap;
+}
 ```
 
+### 字型堆疊（CSS Variables）
+
+```css
+:root {
+  --font-ui:      'FZLanTingHei', 'PingFang TC', 'Noto Sans TC', sans-serif;
+  --font-display: 'JFJinxuan', 'FZLanTingHei', 'PingFang TC', sans-serif;
+  --font-en:      'Inter', system-ui, sans-serif;
+}
+
+body         { font-family: var(--font-ui); }
+.hero-title,
+.display-text { font-family: var(--font-display); }
+.en, .num     { font-family: var(--font-en); }
+```
+
+### 字重對照
+
+#### 方正蘭亭黑 FZLanTingHei
+
+| 字重值 | 檔案 | 使用情境 |
+|-------|------|---------|
+| 200 | `fzlt-w200.ttf` | 極細輕量標注、裝飾文字 |
+| 300 | `fzlt-w300.ttf` | 長文副標、說明文字 |
+| 350 | `fzlt-w350.ttf` | Body 內文（推薦正文用） |
+| 400 | `fzlt-w400.ttf` | UI 標準內文 |
+| 700 | `fzlt-w700.ttf` | 標題、Badge、強調 |
+| 900 | `fzlt-w900.ttf` | 特粗展示標題、數字統計 |
+
+#### jf 金萱 JF Jinxuan
+
+| 字重值 | 檔案 | 使用情境 |
+|-------|------|---------|
+| 200 | `jf-jinxuan-ultralight.otf` | 詩意感副標、日系輕標注 |
+| 400 | `JF-JINXUAN-BOOK.OTF` | 溫暖內文、引言 |
+| 500 | `JF-JINXUAN-MEDIUM.OTF` | 卡片標題、中等強調 |
+| 700 | `JF-JINXUAN-BOLD.OTF` | Hero 副標、區塊標題 |
+| 900 | `jf-jinxuan-heavy.otf` | Hero 主標、品牌 Display 文字 |
+
 ### 字型比例
-| 角色 | 尺寸 | 字重 | 行高 |
-|------|------|------|------|
-| Hero 主標 | 40–56px | 700 | 1.2 |
-| 頁面標題 H1 | 32px | 700 | 1.3 |
-| 區塊標題 H2 | 24px | 700 | 1.35 |
-| 卡片標題 H3 | 18–20px | 600 | 1.4 |
-| 內文 Body | 16px | 400 | 1.65 |
-| 輔助說明 | 14px | 400 | 1.6 |
-| 標籤・Badge | 11–13px | 600–700 | — |
-| 微標注 | 10–11px | 700 | — |
+
+| 角色 | 尺寸 | 字型 | 字重 | 行高 |
+|------|------|------|------|------|
+| Hero 主標 | 48–56px | JFJinxuan | 900 | 1.15 |
+| Hero 副標 | 20–24px | JFJinxuan | 500 | 1.35 |
+| 頁面標題 H1 | 32–40px | FZLanTingHei | 700 | 1.25 |
+| 區塊標題 H2 | 24–28px | FZLanTingHei | 700 | 1.3 |
+| 卡片標題 H3 | 18–22px | FZLanTingHei | 700 | 1.4 |
+| 內文 Body | 16px | FZLanTingHei | 350 | 1.65 |
+| 輔助說明 | 14px | FZLanTingHei | 350 | 1.6 |
+| 標籤・Badge | 11–13px | FZLanTingHei | 700 | — |
+| 數字統計 | 40–56px | FZLanTingHei | 900 | 1.0 |
+| Eyebrow | 11px | FZLanTingHei | 700 | — |
+| 微標注 | 10–11px | FZLanTingHei | 700 | — |
+
+> **正文推薦用 W350**（`fzlt-w350.ttf`）而非 W400，視覺重量更舒適。
 
 **規則**：
-- 最小可讀字體 12px；行動版 Body 不低於 16px
+- 最小可讀字體 12px；行動版 Body 不低於 15px
 - 中英文混排：英文數字與中文字之間加半形空格
-- Letter-spacing：標題 `0.02em`；Badge/Eyebrow `0.08–0.12em`
+- Letter-spacing：標題 `0.02em`；Badge/Eyebrow `0.08–0.12em`；數字統計 `-0.02em`
 
 ---
 
@@ -673,7 +776,8 @@ Text:         #111827 / #374151 / #6b7280 / #9ca3af
 Border:       #e5e7eb
 BG:           #f7f8fa / #f0f2f5 / #ffffff
 
-Font CN:      FZLanTingHei, PingFang TC, Noto Sans TC
+Font UI:      FZLanTingHei (W350 body / W700 title / W900 display)
+Font Display: JFJinxuan (W900 hero / W700 section / W500 card)
 Font EN/Num:  Inter
 
 Card:         bg #fff, radius 12px, shadow 0 2px 8px rgba(0,0,0,0.08)
